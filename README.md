@@ -13,6 +13,15 @@ The following components will each have their own. They are discussed in as much
 ### Web scrapper
 The webscrapper is supposed to collect information about a stock market ticker from websites like google, X and others. This might require an external library to be invoked or an amalgation of an existing code along with a customized part as well.
 
+A different scrapper might be required for different websites. Thus each scrapper could be developed seperately. These are discussed in the following.
+
+<u>Financial Times</u>
+
+Scrapper for financial times should be able to fetch data with the following properties:
+- Data should be valid
+- Data should contain rich test describing the news of the concerned stock
+- Data should have atleast one link regarding the stock  
+
 ### Sentiment scoring algorithm
 The sentiment scoring algorithm is straight forward thrid party software by the name of nltk. It takes the string text as in input and gives out a float number for positive, neutral and negative sentiment present in the provided text. This will be used in the database registry step of the algorithm.
 
