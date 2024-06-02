@@ -1,8 +1,9 @@
 from dataclasses import dataclass
 
+
 @dataclass
-class ArticleLinks:
-    link: str
+class ArticleData:
+    ft_url: str
     date: str
     time:str
     
