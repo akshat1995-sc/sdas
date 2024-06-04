@@ -42,3 +42,13 @@ def get_ft_article_readable_url(article_url: ArticleData)->str:
     main_html_content = soup.find_all("div", {"class":"TEXT-BLOCK"})
     readable_article_url = main_html_content[0].a['href']
     return readable_article_url
+
+def get_text_from_readable_url(readable_article_url:str)->str:
+    session = requests.Session()
+    page = session.get(readable_article_url, headers={
+            "User-Agent": "your bot 0.1"
+        })
+    soup = BeautifulSoup(page.text, "html.parser")
+    article_body = soup.find(id="article-body")
+    text = "".join([div_element.text for div_element in article_body.find_all("div")])
+    return text
