@@ -45,12 +45,7 @@ def ft_article_urls(keyword: str)->list[tuple[str,str]]:
     page = requests.get(BASE_URL+SEARCH_EXT+keyword+DATE_SORTING)
     check_valid_response(page.status_code)
     soup = BeautifulSoup(page.text, 'html.parser')
-    contents = soup.find_all("div", {"class": "o-teaser__heading"})
-    date_time_contents = soup.find_all("div", {"class":"o-teaser__timestamp"})
-    check_valid_date_time_strings(date_time_contents)
-    if not contents: raise ValueError("No ft article url in the soup!")
-    date_time_strings = [date_time_content.time["datetime"] for date_time_content in date_time_contents]
-    return [(BASE_URL+content.a["href"], date_time_string) for content, date_time_string in zip(contents, date_time_strings)]
+    return get_contents_date_time(soup)
 
 def get_ft_articles(ft_article_contents:list[tuple[str,str]])->list[ArticleData]:
     article_generator = FTArticleExtractor()
@@ -61,3 +56,11 @@ def get_ft_articles(ft_article_contents:list[tuple[str,str]])->list[ArticleData]
         article_generator.date_time_string = date_time_string
         articles.append(article_generator.article_data)
     return articles
+
+def get_contents_date_time(soup: BeautifulSoup)->list[tuple[str,str]]:
+    contents = soup.find_all("div", {"class": "o-teaser__heading"})
+    date_time_contents = soup.find_all("div", {"class":"o-teaser__timestamp"})
+    check_valid_date_time_strings(date_time_contents)
+    if not contents: raise ValueError("No ft article url in the soup!")
+    date_time_strings = [date_time_content.time["datetime"] for date_time_content in date_time_contents]
+    return [(BASE_URL+content.a["href"], date_time_string) for content, date_time_string in zip(contents, date_time_strings)]
