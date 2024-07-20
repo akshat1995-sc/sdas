@@ -1,11 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
-from bs4.element import Tag
 
 from sdas.abstract import ArticleExtractor, soup
 from sdas.base import ArticleData
 from sdas.url_utils import check_valid_date_time_strings, check_valid_response
-
 
 SEARCH_EXT = "/search?q="
 BASE_URL = "https://www.ft.com"
