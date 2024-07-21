@@ -2,7 +2,6 @@ import pytest
 
 from sdas.base import ArticleData
 from sdas.ft import ft_article_urls, get_ft_articles
-from sdas.url_utils import get_readable_url_code
 
 KEYWORD = "gold"
 
