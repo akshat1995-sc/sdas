@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 
 import requests
+from time import sleep
 from bs4 import BeautifulSoup
 
 from sdas.base import ArticleData
@@ -47,6 +48,7 @@ class ArticleExtractor(ABC):
 
 def soup(url):
     session = requests.session()
+    sleep(2)
     page = session.get(url, headers={"User-Agent":"your bot 0.1"})
     check_valid_response(page.status_code)
     return BeautifulSoup(page.text, "html.parser")
