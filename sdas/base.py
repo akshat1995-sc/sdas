@@ -5,7 +5,6 @@ from dataclasses import dataclass
 class ArticleData:
     original_url: str
     date: str
-    time:str
+    time: str
     readable_url: str
     text_data: str
-    
